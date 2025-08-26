@@ -1,0 +1,120 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import DisclaimerBanner from '@/components/custom/DisclaimerBanner';
+import Breadcrumbs from '@/components/custom/Breadcrumbs';
+import SipLumpsumComparison from '@/components/custom/SipLumpsumComparison';
+import TelemetryTracker from '@/components/custom/TelemetryTracker';
+
+interface ComparisonPageProps {
+  params: Promise<{
+    comparison: string;
+  }>;
+}
+
+// Valid comparison routes
+const validComparisons = [
+  'mf-vs-fd', 
+  'sip-vs-lumpsum', 
+  'term-vs-endowment',
+  'savings-vs-investment',
+  'home-loan-vs-rent'
+];
+
+export async function generateStaticParams() {
+  return validComparisons.map((comparison) => ({
+    comparison,
+  }));
+}
+
+export async function generateMetadata({ params }: ComparisonPageProps): Promise<Metadata> {
+  const { comparison } = await params;
+  
+  if (!validComparisons.includes(comparison)) {
+    return {
+      title: 'పోలిక దొరకలేదు - FinTech Telugu',
+      description: 'మీరు వెతుకుతున్న పోలిక దొరకలేదు'
+    };
+  }
+
+  // Specific metadata for SIP vs Lump Sum comparison
+  if (comparison === 'sip-vs-lumpsum') {
+    return {
+      title: 'SIP vs లంప్‌సమ్ పోలిక - FinTech Telugu',
+      description: 'SIP మరియు లంప్‌సమ్ పెట్టుబడి పద్ధతుల మధ్య వ్యత్యాసాలు, ప్రయోజనాలు మరియు పరిమితులను తెలుసుకోండి. మీకు ఏ పద్ధతి అనుకూలమో అర్థం చేసుకోండి.',
+      keywords: 'SIP vs lump sum, SIP vs లంప్‌సమ్, systematic investment, mutual fund investment, పెట్టుబడి పద్ధతులు, investment comparison, ఆర్థిక పోలిక',
+      openGraph: {
+        title: 'SIP vs లంప్‌సమ్ పోలిక',
+        description: 'SIP మరియు లంప్‌సమ్ పెట్టుబడి పద్ధతుల మధ్య వ్యత్యాసాలను అర్థం చేసుకోండి',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
+  const comparisonName = comparison === 'mf-vs-fd' ? 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్' :
+                        comparison === 'sip-vs-lumpsum' ? 'SIP vs లంప్‌సమ్' :
+                        comparison === 'term-vs-endowment' ? 'టర్మ్ vs ఎండౌమెంట్ ప్లాన్' :
+                        comparison === 'savings-vs-investment' ? 'పొదుపు vs పెట్టుబడి' :
+                        'హోమ్ లోన్ vs అద్దె';
+
+  return {
+    title: `${comparisonName} పోలిక - FinTech Telugu`,
+    description: `${comparisonName} మధ్య వ్యత్యాసాలు మరియు ఏది ఎప్పుడు ఎంచుకోవాలో తెలుసుకోండి. విద్యాపరమైన ఉద్దేశ్యాలకు మాత్రమే.`,
+    keywords: `${comparisonName}, comparison, పోలిక, Telugu, financial comparison, ఆర్థిక పోలిక`
+  };
+}
+
+export default async function ComparisonPage({ params }: ComparisonPageProps) {
+  const { comparison } = await params;
+
+  // Validate route parameters
+  if (!validComparisons.includes(comparison)) {
+    notFound();
+  }
+
+  // Specific implementation for SIP vs Lump Sum comparison
+  if (comparison === 'sip-vs-lumpsum') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <SipLumpsumComparison />
+        </div>
+      </>
+    );
+  }
+
+  const comparisonName = comparison === 'mf-vs-fd' ? 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్' :
+                        comparison === 'sip-vs-lumpsum' ? 'SIP vs లంప్‌సమ్' :
+                        comparison === 'term-vs-endowment' ? 'టర్మ్ vs ఎండౌమెంట్ ప్లాన్' :
+                        comparison === 'savings-vs-investment' ? 'పొదుపు vs పెట్టుబడి' :
+                        'హోమ్ లోన్ vs అద్దె';
+
+  return (
+    <div className="container mx-auto px-6 py-8">
+      <Breadcrumbs />
+      <DisclaimerBanner type="page" />
+      
+      <div className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {comparisonName} పోలిక
+        </h1>
+        <p className="text-lg text-gray-600">
+          వివరమైన పోలిక వ్యాసం త్వరలో అందుబాటులోకి వస్తుంది
+        </p>
+      </div>
+
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+        <h2 className="text-xl font-semibold text-purple-900 mb-3">
+          పోలిక అధ్యయనం త్వరలో
+        </h2>
+        <p className="text-purple-800">
+          {comparisonName} మధ్య వివరమైన పోలిక అధ్యయనం త్వరలో ప్రచురించబడుతుంది. 
+          ఇది మీకు సరైన ఎంపిక చేయడంలో సహాయపడుతుంది.
+        </p>
+      </div>
+    </div>
+  );
+}
