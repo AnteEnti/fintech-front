@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import DisclaimerBanner from '@/components/custom/DisclaimerBanner';
 import Breadcrumbs from '@/components/custom/Breadcrumbs';
 import SipLumpsumComparison from '@/components/custom/SipLumpsumComparison';
+import HomeLoanVsRentComparison from '@/components/custom/HomeLoanVsRentComparison';
+import MFVsFDComparison from '@/components/custom/MFVsFDComparison';
 import TelemetryTracker from '@/components/custom/TelemetryTracker';
 
 interface ComparisonPageProps {
@@ -51,6 +53,36 @@ export async function generateMetadata({ params }: ComparisonPageProps): Promise
     };
   }
 
+  // Specific metadata for Home Loan vs Rent comparison
+  if (comparison === 'home-loan-vs-rent') {
+    return {
+      title: 'హోమ్ లోన్ vs అద్దె పోలిక - FinTech Telugu',
+      description: 'ఇల్లు కొనుగోలు (హోమ్ లోన్) vs అద్దె మధ్య వ్యత్యాసాలు, ఆర్థిక ప్రభావం మరియు ఎప్పుడు ఏది ఎంచుకోవాలో తెలుసుకోండి. విద్యాపరమైన ఉద్దేశ్యాలకు మాత్రమే.',
+      keywords: 'home loan vs rent, హోమ్ లోన్ vs అద్దె, house buying vs renting, ఇల్లు కొనుగోలు vs అద్దె, real estate decision, గృహ ఆర్థిక నిర్णయం, housing comparison, గృహ పోలిక',
+      openGraph: {
+        title: 'హోమ్ లోన్ vs అద్దె పోలిక',
+        description: 'ఇల్లు కొనుగోలు మరియు అద్దె మధ్య ఆర్థిక వ్యత్యాసాలను అర్థం చేసుకోండి',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
+  // Specific metadata for MF vs FD comparison
+  if (comparison === 'mf-vs-fd') {
+    return {
+      title: 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్ పోలిక - FinTech Telugu',
+      description: 'మ్యూచువల్ ఫండ్స్ మరియు ఫిక్స్‌డ్ డిపాజిట్ మధ్య వ్యత్యాసాలు, రిస్క్-రిటర్న్ ప్రొఫైల్, టాక్స్ ఇంప్లికేషన్లు మరియు ఎప్పుడు ఏది ఎంచుకోవాలో తెలుసుకోండి. విద్యాపరమైన ఉద్దేశ్యాలకు మాత్రమే.',
+      keywords: 'mutual fund vs FD, మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్, investment comparison, పెట్టుబడి పోలిక, risk return, రిస్క్ రిటర్న్, investment options, పెట్టుబడి ఎంపికలు',
+      openGraph: {
+        title: 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్ పోలిక',
+        description: 'మ్యూచువల్ ఫండ్స్ మరియు ఫిక్స్‌డ్ డిపాజిట్ మధ్య వ్యత్యాసాలను అర్థం చేసుకోండి',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
   const comparisonName = comparison === 'mf-vs-fd' ? 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్' :
                         comparison === 'sip-vs-lumpsum' ? 'SIP vs లంప్‌సమ్' :
                         comparison === 'term-vs-endowment' ? 'టర్మ్ vs ఎండౌమెంట్ ప్లాన్' :
@@ -81,6 +113,34 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
           <Breadcrumbs />
           <DisclaimerBanner type="page" />
           <SipLumpsumComparison />
+        </div>
+      </>
+    );
+  }
+
+  // Specific implementation for Home Loan vs Rent comparison
+  if (comparison === 'home-loan-vs-rent') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <HomeLoanVsRentComparison />
+        </div>
+      </>
+    );
+  }
+
+  // Specific implementation for MF vs FD comparison
+  if (comparison === 'mf-vs-fd') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <MFVsFDComparison />
         </div>
       </>
     );

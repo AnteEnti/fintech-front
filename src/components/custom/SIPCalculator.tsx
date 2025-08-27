@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -211,14 +212,49 @@ export default function SIPCalculator() {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl text-gray-900">
-                లంప్‌సమ్ కాలిక్యులేటర్ ఇన్‌పుట్
+                లంప్‌సమ్ కాలిక్యులేటర్
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-blue-800">
-                  లంప్‌సమ్ కాలిక్యులేటర్ త్వరలో అందుబాటులోకి వస్తుంది
-                </p>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                <div className="text-center">
+                  <div className="text-green-900 font-semibold mb-2">
+                    🎉 లంప్‌సమ్ కాలిక్యులేటర్ ఇప్పుడు అందుబాటులో!
+                  </div>
+                  <p className="text-green-800 mb-4">
+                    ఒకేసారి పెట్టుబడి వృద్ధిని లెక్కించండి మరియు మీ ఆర్థిక లక్ష్యాల కోసం ప్రణాళిక చేయండి.
+                  </p>
+                  <Button 
+                    asChild 
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <Link href="/calculators/investment/lumpsum">
+                      లంప్‌సమ్ కాలిక్యులేటర్‌కి వెళ్ళండి →
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-blue-900 mb-2">లంప్‌సమ్ ప్రత్యేకతలు:</h4>
+                  <ul className="text-blue-800 text-sm space-y-1">
+                    <li>• ఒకేసారి పెట్టుబడి</li>
+                    <li>• కంపౌండ్ ఇంట్రెస్ట్ బెనిఫిట్</li>
+                    <li>• టార్గెట్ బేస్డ్ ప్లానింగ్</li>
+                    <li>• ట్యాక్స్ ఇంప్లికేషన్ అనాలిసిస్</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-purple-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-purple-900 mb-2">ఎప్పుడు ఎంచుకోవాలి:</h4>
+                  <ul className="text-purple-800 text-sm space-y-1">
+                    <li>• పెద్ద మొత్తం అందుబాటులో ఉన్నప్పుడు</li>
+                    <li>• మార్కెట్ దిగువ స్థాయిలో ఉన్నప్పుడు</li>
+                    <li>• ఇన్వెస్ట్‌మెంట్ ఎక్స్‌పీరియన్స్ ఉన్నప్పుడు</li>
+                    <li>• దీర్ఘకాలిక గోల్స్ కోసం</li>
+                  </ul>
+                </div>
               </div>
             </CardContent>
           </Card>

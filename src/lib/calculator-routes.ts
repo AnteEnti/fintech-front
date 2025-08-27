@@ -8,7 +8,7 @@ export interface Calculator {
   name: string;
   teluguName: string;
   description: string;
-  category: 'investment' | 'loan' | 'planning';
+  category: 'investment' | 'loan' | 'planning' | 'insurance';
   implemented: boolean;
   legacyUrls?: string[]; // For redirect mapping
 }
@@ -28,6 +28,11 @@ export const CALCULATOR_CATEGORIES = {
     name: 'Planning Calculators',
     teluguName: 'ప్రణాళిక కాలిక్యులేటర్లు', 
     description: 'బడ్జెట్, రిటైర్‌మెంట్, గోల్ ప్లానింగ్'
+  },
+  insurance: {
+    name: 'Insurance Calculators',
+    teluguName: 'బీమా కాలిక్యులేటర్లు',
+    description: 'జీవిత బీమా, హెల్త్ ఇన్షూరెన్స్ అవసరాల లెక్కింపు'
   }
 } as const;
 
@@ -48,7 +53,7 @@ export const CALCULATORS: Calculator[] = [
     teluguName: 'లంప్‌సమ్ కాలిక్యులేటర్',
     description: 'ఒకేసారి పెట్టుబడి వృద్ధిని లెక్కించండి',
     category: 'investment',
-    implemented: false,
+    implemented: true,
     legacyUrls: ['/calculators/lumpsum']
   },
   {
@@ -57,8 +62,17 @@ export const CALCULATORS: Calculator[] = [
     teluguName: 'PPF కాలిక్యులేటర్',
     description: 'పబ్లిక్ ప్రావిడెంట్ ఫండ్ మెచ్యూరిటీ లెక్కించండి',
     category: 'investment',
-    implemented: false,
-    legacyUrls: ['/calculators/ppf', '/calculators/fd']
+    implemented: true,
+    legacyUrls: ['/calculators/ppf']
+  },
+  {
+    slug: 'fd',
+    name: 'FD Calculator',
+    teluguName: 'FD కాలిక్యులేటర్',
+    description: 'ఫిక్స్‌డ్ డిపాజిట్ మెచ్యూరిటీ మరియు వడ్డీ లెక్కించండి',
+    category: 'investment',
+    implemented: true,
+    legacyUrls: ['/calculators/fd']
   },
 
   // Loan Calculators
@@ -117,6 +131,35 @@ export const CALCULATORS: Calculator[] = [
     category: 'planning',
     implemented: false,
     legacyUrls: ['/calculators/goal-planning']
+  },
+
+  // Insurance Calculators
+  {
+    slug: 'life-insurance-needs',
+    name: 'Life Insurance Needs Calculator',
+    teluguName: 'లైఫ్ ఇన్షూరెన్స్ నీడ్స్ కాలిక్యులేటర్',
+    description: 'మీకు ఎంత జీవిత బీమా కవర్ అవసరమో లెక్కించండి',
+    category: 'insurance',
+    implemented: true,
+    legacyUrls: ['/calculators/life-insurance-needs']
+  },
+  {
+    slug: 'term-plan',
+    name: 'Term Plan Calculator',
+    teluguName: 'టర్మ్ ప్లాన్ కాలిక్యులేటర్',
+    description: 'వివిధ టర్మ్ ప్లాన్ ప్రీమియంలను పోల్చండి',
+    category: 'insurance',
+    implemented: true,
+    legacyUrls: ['/calculators/term-plan']
+  },
+  {
+    slug: 'health-insurance',
+    name: 'Health Insurance Calculator',
+    teluguName: 'హెల్త్ ఇన్షూరెన్స్ కాలిక్యులేటర్',
+    description: 'హెల్త్ ఇన్షూరెన్స్ కవర్ అవసరాలు లెక్కించండి',
+    category: 'insurance',
+    implemented: false,
+    legacyUrls: ['/calculators/health-insurance']
   }
 ];
 
