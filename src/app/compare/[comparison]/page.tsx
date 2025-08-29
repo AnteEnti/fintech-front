@@ -5,6 +5,7 @@ import Breadcrumbs from '@/components/custom/Breadcrumbs';
 import SipLumpsumComparison from '@/components/custom/SipLumpsumComparison';
 import HomeLoanVsRentComparison from '@/components/custom/HomeLoanVsRentComparison';
 import MFVsFDComparison from '@/components/custom/MFVsFDComparison';
+import TermVsEndowmentComparison from '@/components/custom/TermVsEndowmentComparison';
 import TelemetryTracker from '@/components/custom/TelemetryTracker';
 
 interface ComparisonPageProps {
@@ -83,6 +84,21 @@ export async function generateMetadata({ params }: ComparisonPageProps): Promise
     };
   }
 
+  // Specific metadata for Term vs Endowment comparison
+  if (comparison === 'term-vs-endowment') {
+    return {
+      title: 'టర్మ్ ఇన్షూరెన్స్ vs ఎండౌమెంట్ ప్లాన్ పోలిక - FinTech Telugu',
+      description: 'టర్మ్ ఇన్షూరెన్స్ మరియు ఎండౌమెంట్ ప్లాన్స్ మధ్య వ్యత్యాసాలు, ప్రీమియం కాస్ట్, కవర్ మొత్తం, రిటర్న్స్ మరియు ఏది ఎప్పుడు ఎంచుకోవాలో తెలుసుకోండి. రక్షణ vs పొదుపు కాన్సెప్ట్ అర్థం చేసుకోండి.',
+      keywords: 'term insurance vs endowment, టర్మ్ ఇన్షూరెన్స్ vs ఎండౌమెంట్, life insurance comparison, జీవిత బీమా పోలిక, insurance vs investment, బీమా vs పెట్టుబడి, protection vs savings',
+      openGraph: {
+        title: 'టర్మ్ ఇన్షూరెన్స్ vs ఎండౌమెంట్ ప్లాన్ పోలిక',
+        description: 'టర్మ్ ఇన్షూరెన్స్ మరియు ఎండౌమెంట్ ప్లాన్స్ మధ్య వ్యత్యాసాలను అర్థం చేసుకోండి',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
   const comparisonName = comparison === 'mf-vs-fd' ? 'మ్యూచువల్ ఫండ్ vs ఫిక్స్‌డ్ డిపాజిట్' :
                         comparison === 'sip-vs-lumpsum' ? 'SIP vs లంప్‌సమ్' :
                         comparison === 'term-vs-endowment' ? 'టర్మ్ vs ఎండౌమెంట్ ప్లాన్' :
@@ -141,6 +157,20 @@ export default async function ComparisonPage({ params }: ComparisonPageProps) {
           <Breadcrumbs />
           <DisclaimerBanner type="page" />
           <MFVsFDComparison />
+        </div>
+      </>
+    );
+  }
+
+  // Specific implementation for Term vs Endowment comparison
+  if (comparison === 'term-vs-endowment') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <TermVsEndowmentComparison />
         </div>
       </>
     );

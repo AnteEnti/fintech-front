@@ -8,7 +8,7 @@ export interface Calculator {
   name: string;
   teluguName: string;
   description: string;
-  category: 'investment' | 'loan' | 'planning' | 'insurance';
+  category: 'investment' | 'loan' | 'planning' | 'insurance' | 'tax';
   implemented: boolean;
   legacyUrls?: string[]; // For redirect mapping
 }
@@ -33,6 +33,11 @@ export const CALCULATOR_CATEGORIES = {
     name: 'Insurance Calculators',
     teluguName: 'బీమా కాలిక్యులేటర్లు',
     description: 'జీవిత బీమా, హెల్త్ ఇన్షూరెన్స్ అవసరాల లెక్కింపు'
+  },
+  tax: {
+    name: 'Tax Calculators',
+    teluguName: 'పన్ను కాలిక్యులేటర్లు',
+    description: 'ఆదాయపు పన్ను, HRA మరియు ఇతర పన్ను లెక్కింపులకు'
   }
 } as const;
 
@@ -160,6 +165,35 @@ export const CALCULATORS: Calculator[] = [
     category: 'insurance',
     implemented: false,
     legacyUrls: ['/calculators/health-insurance']
+  },
+
+  // Tax Calculators
+  {
+    slug: 'income-tax',
+    name: 'Income Tax Calculator',
+    teluguName: 'ఆదాయపు పన్ను కాలిక్యులేటర్',
+    description: 'మీ వార్షిక ఆదాయపు పన్ను మరియు పన్ను ఆదా లెక్కించండి',
+    category: 'tax',
+    implemented: true,
+    legacyUrls: ['/calculators/income-tax']
+  },
+  {
+    slug: 'hra',
+    name: 'HRA Calculator',
+    teluguName: 'HRA కాలిక్యులేటర్',
+    description: 'హౌస్ రెంట్ అలవన్స్ పన్ను మినహాయింపు లెక్కించండి',
+    category: 'tax',
+    implemented: true,
+    legacyUrls: ['/calculators/hra']
+  },
+  {
+    slug: '80c',
+    name: 'Section 80C Calculator',
+    teluguName: 'సెక్షన్ 80C కాలిక్యులేటర్',
+    description: 'సెక్షన్ 80C కింద పన్ను మినహాయింపులు లెక్కించండి',
+    category: 'tax',
+    implemented: true,
+    legacyUrls: ['/calculators/section-80c']
   }
 ];
 

@@ -10,6 +10,9 @@ import FDCalculator from '@/components/custom/FDCalculator';
 import LumpSumCalculator from '@/components/custom/LumpSumCalculator';
 import LifeInsuranceNeedsCalculator from '@/components/custom/LifeInsuranceNeedsCalculator';
 import TermPlanCalculator from '@/components/custom/TermPlanCalculator';
+import IncomeTaxCalculator from '@/components/custom/IncomeTaxCalculator';
+import HRACalculator from '@/components/custom/HRACalculator';
+import Section80CCalculator from '@/components/custom/Section80CCalculator';
 import TelemetryTracker from '@/components/custom/TelemetryTracker';
 
 interface CalculatorPageProps {
@@ -543,6 +546,148 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
     );
   }
 
+  // Section 80C Calculator
+  if (group === 'tax' && tool === '80c') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          
+          {/* Title and Disclaimer */}
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {calculator.teluguName}
+            </h1>
+            <p className="text-lg text-gray-600 mb-6">
+              {calculator.description}
+            </p>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm text-yellow-800">
+                <strong>గమనిక:</strong> ఈ లెక్కింపు విద్యా ప్రయోజనాల కోసం మాత్రమే. ఫలితాలు అంచనాలు మాత్రమే, పన్ను సలహా కాదు. 
+                పెట్టుబడి నిర్ణయాలకు ఆర్థిక సలహాదారుని సంప్రదించండి.
+              </p>
+            </div>
+          </div>
+          
+          <DisclaimerBanner type="calculator" />
+          
+          {/* Two-column layout */}
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 mt-8">
+            {/* Main Calculator Content */}
+            <div className="xl:col-span-3">
+              <Section80CCalculator />
+            </div>
+            
+            {/* Sidebar */}
+            <div className="xl:col-span-1">
+              <div className="space-y-6">
+                {/* Related Tax Tools */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    సంబంధిత టాక్స్ టూల్స్
+                  </h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/calculators/tax/income-tax" 
+                      className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-blue-900">ఆదాయపు పన్ను కాలిక్యులేటర్</div>
+                      <div className="text-sm text-blue-700">పూర్తి పన్ను లెక్కింపు 80C సహా</div>
+                    </Link>
+                    <Link 
+                      href="/calculators/tax/hra" 
+                      className="block p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-purple-900">HRA కాలిక్యులేటర్</div>
+                      <div className="text-sm text-purple-700">హౌస్ రెంట్ అలవన్స్ లెక్కింపు</div>
+                    </Link>
+                    <Link 
+                      href="/learn/taxation/section-80c-deductions" 
+                      className="block p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-green-900">Section 80C గైడ్</div>
+                      <div className="text-sm text-green-700">80C డిడక్షన్ల వివరాలు</div>
+                    </Link>
+                    <div className="p-3 bg-indigo-50 rounded-lg border border-indigo-200">
+                      <div className="font-medium text-indigo-900">80D మరియు 80G కాలిక్యులేటర్లు</div>
+                      <div className="text-sm text-indigo-700 mb-2">ఇతర టాక్స్ సేవింగ్ సెక్షన్లు</div>
+                      <p className="text-xs text-indigo-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Related Investment Calculators */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-4">
+                    80C పెట్టుబడి కాలిక్యులేటర్లు
+                  </h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/calculators/investment/ppf" 
+                      className="block p-3 bg-white hover:bg-blue-50 rounded-lg border border-blue-200 transition-colors"
+                    >
+                      <div className="font-medium text-blue-900">PPF కాలిక్యులేటర్</div>
+                      <div className="text-sm text-blue-700">పబ్లిక్ ప్రావిడెంట్ ఫండ్ రిటర్న్లు</div>
+                    </Link>
+                    <Link 
+                      href="/calculators/investment/sip" 
+                      className="block p-3 bg-white hover:bg-blue-50 rounded-lg border border-blue-200 transition-colors"
+                    >
+                      <div className="font-medium text-blue-900">ELSS SIP కాలిక్యులేటర్</div>
+                      <div className="text-sm text-blue-700">ఈక్విటీ లింక్డ్ సేవింగ్స్ స్కీమ్</div>
+                    </Link>
+                    <div className="p-3 bg-white rounded-lg border border-blue-200">
+                      <div className="font-medium text-blue-900">NSC కాలిక్యులేటర్</div>
+                      <div className="text-sm text-blue-700 mb-2">నేషనల్ సేవింగ్స్ సర్టిఫికేట్</div>
+                      <p className="text-xs text-blue-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Section 80C Tips */}
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-green-900 mb-3">
+                    💡 Section 80C చిట్కాలు
+                  </h3>
+                  <ul className="space-y-2 text-sm text-green-800">
+                    <li>• గరిష్టం ₹1.5L వరకు డిడక్షన్ పొందవచ్చు</li>
+                    <li>• PPF అత్యుత్తమ దీర్ఘకాలిక ఆప్షన్</li>
+                    <li>• ELSS కేవలం 3 సంవత్సరాల లాక్-ఇన్</li>
+                    <li>• ఇన్శూరెన్స్ ప్రీమియంలో 10% లిమిట్ ఉంది</li>
+                    <li>• హోమ్ లోన్ ప్రిన్సిపల్ కూడా కౌంట్ అవుతుంది</li>
+                    <li>• సంవత్సరం చివర్లో రష్ చేయకండి</li>
+                  </ul>
+                </div>
+
+                {/* Investment Mix Strategy */}
+                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-indigo-900 mb-3">
+                    💼 పెట్టుబడి మిశ్రమ వ్యూహం
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <h4 className="font-medium text-indigo-800 mb-1">కొత్త పెట్టుబడిదారుల కోసం</h4>
+                      <p className="text-indigo-700">PPF (60%) + ELSS (30%) + Insurance (10%)</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-indigo-800 mb-1">అనుభవిన పెట్టుబడిదారులకు</h4>
+                      <p className="text-indigo-700">ELSS (40%) + PPF (40%) + Others (20%)</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-indigo-800 mb-1">రిస్క్ తీసుకోలేని వారికి</h4>
+                      <p className="text-indigo-700">PPF (50%) + NSC (30%) + Insurance (20%)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   // Life Insurance Needs Calculator
   if (group === 'insurance' && tool === 'life-insurance-needs') {
     return (
@@ -763,6 +908,270 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Income Tax Calculator Implementation
+  if (group === 'tax' && tool === 'income-tax') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          
+          {/* Title and Disclaimer */}
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {calculator.teluguName}
+            </h1>
+            <p className="text-lg text-gray-600 mb-6">
+              {calculator.description}
+            </p>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm text-yellow-800">
+                <strong>గమనిక:</strong> ఈ లెక్కింపు విద్యా ప్రయోజనాల కోసం మాత్రమే. ఫలితాలు అంచనాలు మాత్రమే, పన్ను సలహా కాదు. 
+                పన్ను నిర్ణయాలకు ముందు టాక్స్ అడ్వైజర్‌ని సంప్రదించండి.
+              </p>
+            </div>
+          </div>
+          
+          <DisclaimerBanner type="calculator" />
+          
+          {/* Two-column layout */}
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 mt-8">
+            {/* Main Calculator Content */}
+            <div className="xl:col-span-3">
+              <IncomeTaxCalculator />
+            </div>
+            
+            {/* Sidebar */}
+            <div className="xl:col-span-1">
+              <div className="space-y-6">
+                {/* Related Tax Tools */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    సంబంధిత టాక్స్ టూల్స్
+                  </h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/learn/taxation/income-tax-basics" 
+                      className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-blue-900">ఆదాయపు పన్ను గైడ్</div>
+                      <div className="text-sm text-blue-700">పన్ను స్లాబ్‌లు మరియు మినహాయింపులు</div>
+                    </Link>
+                    <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                      <div className="font-medium text-green-900">HRA కాలిక్యులేటర్</div>
+                      <div className="text-sm text-green-700 mb-2">హౌస్ రెంట్ అలవన్స్ లెక్కింపు</div>
+                      <p className="text-xs text-green-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                    <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
+                      <div className="font-medium text-purple-900">సెక్షన్ 80C కాలిక్యులేటర్</div>
+                      <div className="text-sm text-purple-700 mb-2">పన్ను ఆదా పెట్టుబడుల లెక్కింపు</div>
+                      <p className="text-xs text-purple-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                    <Link 
+                      href="/calculators/investment/ppf" 
+                      className="block p-3 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-orange-900">PPF కాలిక్యులేటర్</div>
+                      <div className="text-sm text-orange-700">80C మినహాయింపుతో PPF లెక్కింపు</div>
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Tax Planning Tips */}
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-yellow-900 mb-3">
+                    💡 పన్ను ప్లానింగ్ టిప్స్
+                  </h3>
+                  <ul className="space-y-2 text-sm text-yellow-800">
+                    <li>• ఆర్థిక సంవత్సరం ప్రారంభంలోనే పన్ను ప్లానింగ్ చేయండి</li>
+                    <li>• సెక్షన్ 80C కింద గరిష్టంగా ₹1.5L పెట్టుబడి చేయండి</li>
+                    <li>• హెల్త్ ఇన్షూరెన్స్ తప్పనిసరిగా తీసుకోండి</li>
+                    <li>• పాత vs కొత్త విధానం ఏది మంచిదో పోల్చండి</li>
+                    <li>• ITR సమర్పణకు ముందే లెక్కలు చూసుకోండి</li>
+                  </ul>
+                </div>
+
+                {/* Tax Regime Comparison */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-blue-900 mb-3">
+                    విధానాల పోలిక
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <h4 className="font-medium text-blue-800 mb-1">పాత విధానం</h4>
+                      <p className="text-blue-700">
+                        • అధిక రేట్లు కానీ మినహాయింపులు<br/>
+                        • 80C, 80D మొదలైన డిడక్షన్లు<br/>
+                        • HRA, LTA మినహాయింపులు
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-blue-800 mb-1">కొత్త విధానం</h4>
+                      <p className="text-blue-700">
+                        • తక్కువ రేట్లు కానీ మినహాయింపులు లేవు<br/>
+                        • ₹3L వరకు పన్ను లేదు<br/>
+                        • సాధారణ డిడక్షన్ మాత్రమే
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Educational Content */}
+                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-indigo-900 mb-3">
+                    పన్ను విద్య
+                  </h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/learn/taxation/income-tax-basics" 
+                      className="block p-2 bg-white rounded border border-indigo-200 hover:border-indigo-300 transition-colors"
+                    >
+                      <div className="font-medium text-indigo-900 text-sm">పన్ను బేసిక్స్</div>
+                      <div className="text-xs text-indigo-700">ఆదాయపు పన్ను గురించి తెలుసుకోండి</div>
+                    </Link>
+                    <div className="p-2 bg-white rounded border border-indigo-200">
+                      <div className="font-medium text-indigo-900 text-sm">టాక్స్ స్లాబ్‌లు 2024</div>
+                      <div className="text-xs text-indigo-700 mb-1">కరెంట్ టాక్స్ రేట్లు మరియు స్లాబ్‌లు</div>
+                      <p className="text-xs text-indigo-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // HRA Calculator Implementation
+  if (group === 'tax' && tool === 'hra') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          
+          {/* Title and Disclaimer */}
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {calculator.teluguName}
+            </h1>
+            <p className="text-lg text-gray-600 mb-6">
+              {calculator.description}
+            </p>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm text-yellow-800">
+                <strong>గమనిక:</strong> ఈ లెక్కింపు విద్యా ప్రయోజనాల కోసం మాత్రమే. ఫలితాలు అంచనాలు మాత్రమే, పన్ను సలహా కాదు. 
+                అద్దె రశీదులు మరియు IT విభాగ నియమాలను తప్పనిసరిగా పాటించండి.
+              </p>
+            </div>
+          </div>
+          
+          <DisclaimerBanner type="calculator" />
+          
+          {/* Two-column layout */}
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 mt-8">
+            {/* Main Calculator Content */}
+            <div className="xl:col-span-3">
+              <HRACalculator />
+            </div>
+            
+            {/* Sidebar */}
+            <div className="xl:col-span-1">
+              <div className="space-y-6">
+                {/* Related Tax Tools */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    సంబంధిత టాక్స్ టూల్స్
+                  </h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/calculators/tax/income-tax" 
+                      className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-blue-900">ఆదాయపు పన్ను కాలిక్యులేటర్</div>
+                      <div className="text-sm text-blue-700">పూర్తి పన్ను లెక్కింపు HRA సహా</div>
+                    </Link>
+                    <Link 
+                      href="/learn/taxation/income-tax-basics" 
+                      className="block p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+                    >
+                      <div className="font-medium text-green-900">HRA గైడ్</div>
+                      <div className="text-sm text-green-700">HRA నియమాలు మరియు మినహాయింపులు</div>
+                    </Link>
+                    <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
+                      <div className="font-medium text-purple-900">సెక్షన్ 80C కాలిక్యులేటర్</div>
+                      <div className="text-sm text-purple-700 mb-2">ఇతర పన్ను ఆదా పెట్టుబడులు</div>
+                      <p className="text-xs text-purple-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                    <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                      <div className="font-medium text-orange-900">జీతం స్ట్రక్చర్ ప్లానర్</div>
+                      <div className="text-sm text-orange-700 mb-2">HRA ఆప్టిమైజేషన్ కోసం</div>
+                      <p className="text-xs text-orange-600">త్వరలో అందుబాటులో</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* HRA Tips */}
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-green-900 mb-3">
+                    💡 HRA చిట్కాలు
+                  </h3>
+                  <ul className="space-y-2 text-sm text-green-800">
+                    <li>• అద్దె రశీదులను తప్పనిసరిగా సేవ్ చేయండి</li>
+                    <li>• ₹8,000/నెల మించితే యజమాని PAN కార్డ్ అవసరం</li>
+                    <li>• రివెన్యూ స్టాంప్ రశీదులపై ఉండాలి</li>
+                    <li>• కుటుంబ సభ్యుల నుండి అద్దె తీసుకుంటే HRA రాదు</li>
+                    <li>• అద్దె ఒప్పందం ₹1L/సంవత్సరం మించితే అవసరం</li>
+                  </ul>
+                </div>
+
+                {/* Metro vs Non-Metro */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-blue-900 mb-3">
+                    మెట్రో vs నాన్-మెట్రో
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <h4 className="font-medium text-blue-800 mb-1">మెట్రో సిటీలు (50%)</h4>
+                      <p className="text-blue-700">
+                        • ముంబయి, దిల్లీ, కోల్‌కతా, చెన్నై<br/>
+                        • జీతంలో 50% వరకు HRA మినహాయింపు<br/>
+                        • అధిక అద్దె రేట్లకు అనుకూలం
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-blue-800 mb-1">నాన్-మెట్రో (40%)</h4>
+                      <p className="text-blue-700">
+                        • ఇతర అన్ని నగరాలు<br/>
+                        • జీతంలో 40% వరకు HRA మినహాయింపు<br/>
+                        • తక్కువ అద్దె రేట్లకు సరైనది
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Compliance Notes */}
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-red-900 mb-3">
+                    ⚠️ కాంప్లయన్స్ నోట్స్
+                  </h3>
+                  <div className="space-y-2 text-sm text-red-800">
+                    <p>• అద్దె రశీదులు IT విభాగ తనిఖీలో చూపించాలి</p>
+                    <p>• యజమాని PAN వివరాలు Form 12BB లో పేర్కొనాలి</p>
+                    <p>• తప్పుడు HRA క్లెయిమ్‌లకు పెనాల్టీ వర్తిస్తుంది</p>
+                    <p>• హోమ్ లోన్ వడ్డీతో కలిపి క్లెయిమ్ చేయవచ్చు</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

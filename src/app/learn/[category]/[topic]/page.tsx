@@ -6,6 +6,8 @@ import MutualFundsContent from '@/components/custom/MutualFundsContent';
 import LoansLearnContent from '@/components/custom/LoansLearnContent';
 import PPFLearnContent from '@/components/custom/PPFLearnContent';
 import LifeInsuranceContent from '@/components/custom/LifeInsuranceContent';
+import IncomeTaxContent from '@/components/custom/IncomeTaxContent';
+import Sections80CContent from '@/components/custom/Sections80CContent';
 import TelemetryTracker from '@/components/custom/TelemetryTracker';
 
 interface LearnPageProps {
@@ -23,6 +25,7 @@ const validLearnContent = {
   'loans': ['home-loan-guide', 'personal-loan-tips', 'credit-score'],
   'banking-credit': ['loans-overview'],
   'tax-planning': ['income-tax', 'tax-saving', 'deductions'],
+  'taxation': ['income-tax-basics', 'sections-80c-80d-80g'],
   'retirement': ['ppf']
 };
 
@@ -108,6 +111,36 @@ export async function generateMetadata({ params }: LearnPageProps): Promise<Meta
     };
   }
 
+  // Specific metadata for income tax basics
+  if (category === 'taxation' && topic === 'income-tax-basics') {
+    return {
+      title: 'ఆదాయపు పన్ను బేసిక్స్ అర్థం చేసుకోండి - Income Tax Guide | FinTech Telugu',
+      description: 'ఆదాయపు పన్ను గురించి పూర్తి గైడ్. పన్ను స్లాబ్‌లు, కోతలు, ఫైలింగ్ ప్రక్రియ, సెక్షన్ 80C, 80D, అడ్వాన్స్ టాక్స్ మరియు TDS గురించి తెలుసుకోండి. టాక్స్ ప్లానింగ్ వ్యూహాలు మరియు కంప్లైయెన్స్ విద్యాపరమైన ఉద్దేశ్యాలకు మాత్రమే.',
+      keywords: 'income tax, ఆదాయపు పన్ను, tax slabs, టాక్స్ స్లాబ్‌లు, Section 80C, సెక్షన్ 80C, Section 80D, సెక్షన్ 80D, tax deductions, పన్ను కోతలు, ITR filing, ITR ఫైలింగ్, TDS, advance tax, అడ్వాన్స్ టాక్స్, tax planning, టాక్స్ ప్లానింగ్, income tax act, Telugu financial education',
+      openGraph: {
+        title: 'ఆదాయపు పన్ను బేసిక్స్ అర్థం చేసుకోండి - Tax Planning',
+        description: 'ఆదాయపు పన్ను, పన్ను స్లాబ్‌లు, కోతలు మరియు ఫైలింగ్ ప్రక్రియ గురించి పూర్తి గైడ్',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
+  // Specific metadata for sections 80C/80D/80G
+  if (category === 'taxation' && topic === 'sections-80c-80d-80g') {
+    return {
+      title: 'Section 80C, 80D, 80G అర్థం చేసుకోండి - Tax Deductions Guide | FinTech Telugu',
+      description: 'Section 80C/80D/80G పన్ను కోతల గురించి పూర్తి గైడ్. PPF, ELSS, హెల్త్ ఇన్షూరెన్స్, దానాలపై పన్ను ఆదా మార్గాలు తెలుసుకోండి. ₹1.5L వరకు 80C, ₹25K-50K వరకు 80D, దానాలపై 80G. విద్యాపరమైన ఉద్దేశ్యాలకు మాత్రమే.',
+      keywords: 'Section 80C, సెక్షన్ 80C, Section 80D, సెక్షన్ 80D, Section 80G, సెక్షన్ 80G, tax deductions, పన్ను కోతలు, PPF, ELSS, health insurance, హెల్త్ ఇన్షూరెన్స్, donations, దానాలు, tax savings, పన్ను ఆదా, income tax, ఆదాయపు పన్ను, Telugu financial education',
+      openGraph: {
+        title: 'Section 80C, 80D, 80G అర్థం చేసుకోండి - Tax Deductions',
+        description: 'పన్ను కోతల గురించి పూర్తి గైడ్ - PPF, ELSS, హెల్త్ ఇన్షూరెన్స్, దానాలపై పన్ను ఆదా మార్గాలు',
+        locale: 'te_IN',
+        type: 'article'
+      }
+    };
+  }
+
   const topicName = topic.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   return {
@@ -181,12 +214,41 @@ export default async function LearnPage({ params }: LearnPageProps) {
     );
   }
 
+  // Specific implementation for income tax basics
+  if (category === 'taxation' && topic === 'income-tax-basics') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <IncomeTaxContent />
+        </div>
+      </>
+    );
+  }
+
+  // Specific implementation for sections 80C/80D/80G
+  if (category === 'taxation' && topic === 'sections-80c-80d-80g') {
+    return (
+      <>
+        <TelemetryTracker trackPageView={true} />
+        <div className="container mx-auto px-6 py-8">
+          <Breadcrumbs />
+          <DisclaimerBanner type="page" />
+          <Sections80CContent />
+        </div>
+      </>
+    );
+  }
+
   // Default implementation for other learn content
   const categoryName = category === 'money-basics' ? 'డబ్బు మూలాలు' :
                       category === 'investments' ? 'పెట్టుబడులు' :
                       category === 'insurance' ? 'బీమా' :
                       category === 'loans' ? 'రుణాలు' :
                       category === 'banking-credit' ? 'బ్యాంకింగ్ & క్రెడిట్' :
+                      category === 'taxation' ? 'పన్నులు' :
                       category === 'retirement' ? 'రిటైర్మెంట్ ప్లానింగ్' :
                       'పన్ను ప్రణాళిక';
 
