@@ -16,7 +16,10 @@ const validTips = [
   'tax-saving-tips',
   'investment-basics',
   'budget-planning',
-  'emergency-fund-tips'
+  'emergency-fund-tips',
+  'avoid-mistakes',
+  'digital-fraud-awareness',
+  'credit-card-usage'
 ];
 
 export async function generateStaticParams() {
@@ -41,6 +44,9 @@ export async function generateMetadata({ params }: TipsPageProps): Promise<Metad
                    topic === 'tax-saving-tips' ? 'పన్ను ఆదా టిప్స్' :
                    topic === 'investment-basics' ? 'పెట్టుబడి ప్రాథమికాలు' :
                    topic === 'budget-planning' ? 'బడ్జెట్ ప్లానింగ్ టిప్స్' :
+                   topic === 'avoid-mistakes' ? 'సాధారణ ఆర్థిక తప్పిదాలను ఎలా నివారించాలి' :
+                   topic === 'digital-fraud-awareness' ? 'డిజిటల్ మోసాల గురించి తెలుసుకోండి' :
+                   topic === 'credit-card-usage' ? 'క్రెడిట్ కార్డ్ వినియోగంలో తెలివైన పద్ధతులు' :
                    'ఎమర్జెన్సీ ఫండ్ టిప్స్';
 
   return {
@@ -64,6 +70,9 @@ export default async function TipsPage({ params }: TipsPageProps) {
                    topic === 'tax-saving-tips' ? 'పన్ను ఆదా టిప్స్' :
                    topic === 'investment-basics' ? 'పెట్టుబడి ప్రాథమికాలు' :
                    topic === 'budget-planning' ? 'బడ్జెట్ ప్లానింగ్ టిప్స్' :
+                   topic === 'avoid-mistakes' ? 'సాధారణ ఆర్థిక తప్పిదాలను ఎలా నివారించాలి' :
+                   topic === 'digital-fraud-awareness' ? 'డిజిటల్ మోసాల గురించి తెలుసుకోండి' :
+                   topic === 'credit-card-usage' ? 'క్రెడిట్ కార్డ్ వినియోగంలో తెలివైన పద్ధతులు' :
                    'ఎమర్జెన్సీ ఫండ్ టిప్స్';
 
   return (

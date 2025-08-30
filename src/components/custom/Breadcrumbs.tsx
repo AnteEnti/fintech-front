@@ -78,6 +78,9 @@ export default function Breadcrumbs() {
       'investment-basics': 'పెట్టుబడి ప్రాథమికాలు',
       'budget-planning': 'బడ్జెట్ ప్లానింగ్ టిప్స్',
       'emergency-fund-tips': 'ఎమర్జెన్సీ ఫండ్ టిప్స్',
+      'avoid-mistakes': 'సాధారణ ఆర్థిక తప్పిదాలను ఎలా నివారించాలి',
+      'digital-fraud-awareness': 'డిజిటల్ మోసాల గురించి తెలుసుకోండి',
+      'credit-card-usage': 'క్రెడిట్ కార్డ్ వినియోగంలో తెలివైన పద్ధతులు',
       
       // Legal
       'privacy': 'ప్రైవసీ పాలసీ',
