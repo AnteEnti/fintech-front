@@ -26,7 +26,24 @@ import {
   PieChart,
   Clock,
   Search,
-  Zap
+  Zap,
+  Home,
+  Car,
+  ShoppingCart,
+  Lightbulb,
+  Music,
+  Repeat,
+  Calendar,
+  Star,
+  TrendingUp as Growth,
+  Activity,
+  RefreshCw,
+  Heart,
+  Baby,
+  GraduationCap,
+  Handshake,
+  BarChart3,
+  Settings
 } from "lucide-react";
 import Link from "next/link";
 
@@ -81,6 +98,50 @@ export default function TipsArticle({
       'new-inquiries': Search,
       'monitoring-disputes': Shield,
       'quick-improvement': Zap,
+      // Daily saving tips specific icons
+      'household-expenses': Home,
+      'transportation-saving': Car,
+      'food-grocery-saving': ShoppingCart,
+      'utility-bills-saving': Lightbulb,
+      'entertainment-lifestyle': Music,
+      'shopping-consumer-habits': Repeat,
+      'habit-building-tracking': Target,
+      'emergency-fund-integration': Shield,
+      // EMI reduction specific icons
+      'prepayment-strategy': DollarSign,
+      'loan-restructuring-refinancing': Building2,
+      'debt-consolidation': TrendingDown,
+      'income-optimization': TrendingUp,
+      'emergency-management': Shield,
+      'smart-emi-management': Calculator,
+      'tax-benefits-optimization': Receipt,
+      // Seasonal finance tips specific icons
+      'festival-budgeting': Star,
+      'year-end-tax-planning': Receipt,
+      'bonus-management': Gift,
+      'seasonal-investments': Growth,
+      'insurance-review': Shield,
+      'quarterly-review': Activity,
+      'new-year-planning': Calendar,
+      'cash-flow-management': RefreshCw,
+      // Family finance tips specific icons
+      'couple-money-management': Heart,
+      'joint-goal-planning': Target,
+      'children-financial-education': Baby,
+      'family-budgeting': Home,
+      'insurance-protection-planning': Shield,
+      'multigenerational-planning': Users,
+      'financial-conflict-resolution': Handshake,
+      'family-financial-milestones': GraduationCap,
+      // Money management apps specific icons
+      'budgeting-apps': Calculator,
+      'expense-tracking-apps': Search,
+      'investment-monitoring-apps': BarChart3,
+      'banking-payment-apps': CreditCard,
+      'financial-planning-apps': Target,
+      'app-security-privacy': ShieldCheck,
+      'app-evaluation-framework': Settings,
+      'telugu-indian-banking': Smartphone,
     };
     return iconMap[sectionId as keyof typeof iconMap] || AlertTriangle;
   };
