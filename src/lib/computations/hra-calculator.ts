@@ -176,7 +176,7 @@ export function calculateOptimalRent(inputs: HRAInputs): OptimalRentRecommendati
 /**
  * Generate insights and tips for HRA optimization
  */
-export function generateHRAInsights(inputs: HRAInputs, _result: HRAExemptionCalculation): HRAResult['insights'] {
+export function generateHRAInsights(inputs: HRAInputs): HRAResult['insights'] {
   const { cityType, basicSalary } = inputs;
   
   const cityBenefit = cityType === 'metro' 
@@ -222,7 +222,7 @@ export function calculateHRA(inputs: HRAInputs): HRAResult {
   const optimalRent = calculateOptimalRent(inputs);
   
   // Generate insights
-  const insights = generateHRAInsights(inputs, exemptionCalculation);
+  const insights = generateHRAInsights(inputs);
 
   return {
     inputs,

@@ -13,7 +13,7 @@ interface Section80CResultsProps {
 
 export default function Section80CResults({ result }: Section80CResultsProps) {
   const utilizationPercentage = result.insights.utilizationPercentage;
-  const isOptimal = utilizationPercentage >= 90;
+  // const isOptimal = utilizationPercentage >= 90;
 
   return (
     <div className="space-y-6">

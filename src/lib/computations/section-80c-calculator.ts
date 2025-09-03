@@ -113,7 +113,7 @@ export function calculateSection80C(inputs: Section80CInputs): Section80CResult 
   const investmentBreakdown = generateInvestmentBreakdown(inputs, totalInvestments);
   
   // Generate optimization suggestions
-  const optimizationSuggestions = generateOptimizationSuggestions(inputs, remaining80CCapacity, marginalTaxRate);
+  const optimizationSuggestions = generateOptimizationSuggestions(inputs, remaining80CCapacity);
   
   // Generate insights
   const insights = generateSection80CInsights(inputs, totalInvestments, remaining80CCapacity);
@@ -279,8 +279,7 @@ function generateInvestmentBreakdown(inputs: Section80CInputs, totalInvestments:
  */
 function generateOptimizationSuggestions(
   inputs: Section80CInputs, 
-  remaining80CCapacity: number, 
-  marginalTaxRate: number
+  remaining80CCapacity: number
 ): OptimizationRecommendation[] {
   if (remaining80CCapacity <= 0) return [];
   

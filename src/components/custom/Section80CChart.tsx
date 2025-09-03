@@ -14,7 +14,6 @@ import {
   Tooltip, 
   Legend,
   ComposedChart,
-  Line,
   ResponsiveContainer 
 } from 'recharts';
 import { Section80CResult } from "@/lib/computations/section-80c-calculator";
